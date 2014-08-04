@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" href="css/custom.css"/>
+<script src="lib/easelJS-0.7.1-min.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script> -->
+<script src="lib/soundJS-0.5.2-min.js"></script>
+<script src="lib/preloadJS-0.4.1-min.js"></script> 
+</head>
+<body onload = "init()">
+
+
+<div id="canvasbox">   
+    <!--<canvas id="canvas" width="1000" height="400" ></canvas> -->
+    <canvas id="gameCanvas" width="700" height="500" style="border: 1px dashed black"></canvas>
+</div>
+
+<script>
+    //define vars
+    var canvas = null; //Canvas pointer
+    var img = null; //image holder
+    var ctx = null; //canvas drawing contex(2D)
+    var imageReady = false; //Holds image load status
+    var frame = 0;  // Holds total number of sprites (animation images)
+    var xpos = [0,165]; //Array holding the x offset coordinates for the animation
+    
+    
+    //This function will be called after page loads
+    function init(){
+      canvas = document.getElementById('gameCanvas');
+      ctx = canvas.getContext("2d");
+      img = new Image();
+      img.src = 'images/sprite4.png';
+      img.onload = loaded; // On image load, run the function loaded, which changes image ready to true and start the timer.
+      redraw();  // Calls the redraw function that draws the images
+    }
+    function loaded(){
+      imageReady = true;
+      setTimeout( update, 1000 / .5 ); //The timer calls the update function at 20 frames per minute, the update recurses the timer.
+    }
+
+    
+    function update(){ 
+        redraw();
+        frame++; 
+        if (frame >= 2){
+            frame = 0;
+        }
+        setTimeout( update, 1000 /.5 );
+    }    
+      
+    
+
+    function redraw(){
+      ctx.fillStyle = '#0000ff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (imageReady){
+                    ctx.drawImage(img, frame*xpos[frame], 0, 165, 209, canvas.width/2 - 78, canvas.height/2 - 78, 165, 209);
+      }                      
+    }
+    
+</script>
+</body>
+</html>
+
+
+
+
+    
+
+
+
+
+
+
+
+

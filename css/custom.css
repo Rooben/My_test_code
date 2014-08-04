@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+    padding: 50px;
+}
+
+#surDiv{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#canvasbox{
+    width: 702px;
+    height: 502px;
+    border: solid 2px red;
+    margin: 0 auto;
+}
+
+#stop{
+    position: relative;
+}
+
+#start{
+    position: relative;
+}
